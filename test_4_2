@@ -70,4 +70,57 @@ int main()
     }
     printf("%d", a);//输出结果
     return 0;
+    
+    
+    
+}
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<math.h>
+int main()//判断一个坐标的高度
+{
+    float b = 0, x, y;
+    int a = 0;
+    printf("输入坐标x,y\n");
+    scanf("%f%f", &x,&y);
+    //printf("%d %d %d", x, y, z);
+    if (x>=1 && x<=3)//如果坐标在以下四个区间
+    {                //就赋四个值，分别计算
+        if (y >=1 && y<=3)//不在的直接跳过
+            a = 1;
+        else if (y >=-3 && y <= -1)
+            a = 2;
+    }
+    else if (x >= -3 && x <= -1)
+    {
+        if (y >= 1 && y <= 3)
+            a = 3;
+        else if (y >= -3 && y <= -1)
+            a = 4;
+    }
+    switch (a)//根据区间分别计算不同的值
+    {
+    case 1:
+        b = (x - 2) * (x - 2) + (y - 2) * (y - 2);
+        b = sqrt(b);//计算该坐标与四个原点的距离
+        break;      
+    case 2:
+        b = (x - 2) * (x - 2) + (y + 2) * (y + 2);
+        b = sqrt(b);
+        break;
+    case 3:
+        b = (x + 2) * (x + 2) + (y - 2) * (y - 2);
+        b = sqrt(b);
+        break;
+    case 4:
+        b = (x + 2) * (x + 2) + (y + 2) * (y + 2);
+        b = sqrt(b);
+    default:
+        ;
+    }
+    if (b <= 1&&b>0)//如果小于1，则在范围内
+        printf("该点坐标为10\n");
+    else
+        printf("该点坐标为0\n");
+    return 0;
 }
