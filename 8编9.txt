@@ -1,0 +1,61 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<math.h>
+#include<stdbool.h>
+#include<stdlib.h>
+int main(void)
+{
+	char chess[10][10] = { 0 };
+
+	for (int i=0;i<10;i++)
+		for (int j = 0; j < 10; j++)
+			chess[i][j] = '.';
+
+	srand((unsigned)time(0));
+
+	chess[0][0] = 'A';
+
+	for (int i=0,j=0,drt=0,num=1;num<26;)
+	{
+		drt=rand() % 4 + 1;
+		switch (drt)
+		{
+		case 1:i--; break;			//上
+		case 2:i++;	break;			//下
+		case 3:j--;	break;			//左
+		case 4:j++;	break;			//右
+		}
+		if (i < 0){
+			i++;
+			continue;
+		}
+		if (i > 9){
+			i--;
+			continue;
+		}
+		if (j < 0) {
+			j++;
+			continue;
+		}
+		if (j > 9) {
+			j--;
+			continue;
+		}
+		if (chess[i][j] == '.')
+			chess[i][j] = 'A' + num;
+		else
+			break;
+		num++;
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+			printf("%c ", chess[i][j]);
+		putchar('\n');
+	}
+
+
+
+
+	return 0;
+}
